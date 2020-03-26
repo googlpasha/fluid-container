@@ -16,9 +16,6 @@ export default class
         width: "50px",
         border: "3px solid #000"
       }
-      if(this.props.start){
-        this.tankFiller()
-      }
       var tank1FillAmmount = this.props.tank1;
       var tank1EmptyAmmount = 100 - tank1FillAmmount;
       tank1Styles.background = "linear-gradient(to top, #3caa3c " + tank1FillAmmount + "%, #fff " + tank1EmptyAmmount + "%)"

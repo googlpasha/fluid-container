@@ -2,21 +2,27 @@ import React from 'react';
 import './App.css';
 import { connect } from 'react-redux'
 import Tank from './tanks/Tank1'
+import TankStart from './tanks/TankSatrt'
 
 class App extends React.Component {
   render(){
+    var prepared = false;
+    if(this.props.tank1 == 10){
+         this.prepared = true;
+         console.log(this.prepared)
+    }
     return (
       <div className="App">
         <div className="container">
           <div className="row">
-            <div className="col-lg-4"></div>
-            <div className="col-lg-4">
+            <div className="col-lg-2"></div>
+            <div className="col-lg-8">
               <h1>Fluid counter!</h1>
               {this.props.tank1}
-              <Tank tank1={this.props.tank1} fillUp={this.props.fillUp} />
-              <Tank tank1={this.props.tank2} fillUp={this.props.fillUp2} />
+              <TankStart tank1={this.props.tank1} fillUp={this.props.fillUp} />
+              <Tank tank1={this.props.tank2} start={this.prepared} fillUp={this.props.fillUp2} />
             </div>
-            <div className="col-lg-4"></div>
+            <div className="col-lg-2"></div>
           </div>
         </div>
       </div>
