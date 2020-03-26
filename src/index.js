@@ -3,11 +3,33 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux'
+import reduser from './store/reduser'
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import createSagaMiddleware from 'redux-saga'
+// import watchLoading from './sagas/saga'
+
+// const logAction = store => {
+//   return next => {
+//     return action =>{
+//       const result = next(action)
+//       console.log("Caught in the middleware", result)
+//       return result
+//     }
+//   }
+// }
+
+const store = createStore(reduser)
+
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 
