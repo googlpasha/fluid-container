@@ -2,7 +2,7 @@
 
 ## FLUID-CONTAINER
 Hey! 
-This is my first big React project🚀⚛
+This is my first big React and Redux project🚀⚛
 This project can show you how fluid can fill connected containers🥛
 If you learn React too and know JS enough, I'll feel free to help me with 
 this project and create some features😁
@@ -10,6 +10,9 @@ If you're react developer, please write me some advises, it will make me better�
 Thank you!🦜
 
 ## HOW TO START?
+
+## npm install
+Install all npm packages from package.json
 
 ## npm start
 Runs the app in the development mode.
