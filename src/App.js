@@ -1,37 +1,7 @@
 import React from 'react';
 import './App.css';
 import { connect } from 'react-redux'
-
-class Tank extends React.Component {
-
-  tankFiller = () =>{
-    if(this.props.a < 100)
-      setTimeout(() => {
-        this.props.fillUp()
-        this.tankFiller()
-      }, 500);
-
-  }
-  render(){
-    var tank1 = {
-      height: "100px",
-      width: "50px",
-      border: "3px solid #000"
-    }
-    var tank1FillAmmount = this.props.a;
-    var tank1EmptyAmmount = 100 - tank1FillAmmount;
-    tank1.background = "linear-gradient(to top, #3caa3c " + tank1FillAmmount + "%, #fff " + tank1EmptyAmmount + "%)"
-    return (
-      <div>
-        <div>
-          {tank1.background}
-          <div style={tank1}></div>
-          <button onClick={this.tankFiller.bind(this)}>FILL</button>
-        </div>
-      </div>
-    )
-  }
-}
+import Tank from './tanks/Tank1'
 
 class App extends React.Component {
   render(){
@@ -42,8 +12,9 @@ class App extends React.Component {
             <div className="col-lg-4"></div>
             <div className="col-lg-4">
               <h1>Fluid counter!</h1>
-              {this.props.a}
-              <Tank a={this.props.a} fillUp={this.props.fillUp} />
+              {this.props.tank1}
+              <Tank tank1={this.props.tank1} fillUp={this.props.fillUp} />
+              <Tank tank1={this.props.tank2} fillUp={this.props.fillUp2} />
             </div>
             <div className="col-lg-4"></div>
           </div>
@@ -56,14 +27,16 @@ class App extends React.Component {
 const mapStateToProps = (state) =>{
   return {
     age:state.age,
-    a:state.a
+    tank1:state.tank1,
+    tank2:state.tank2
   }
 }
 
 const mapDispachToProps = (dispach) => {
   return {
     onAgeUp: () => dispach({type:'AGE_UP', value: 1}),
-    fillUp: () => dispach({type:'FILL_UP'})
+    fillUp: () => dispach({type:'FILL_UP', value: 1}),
+    fillUp2: () => dispach({type:'FILL_UP', value:2})
   }
 }
 
