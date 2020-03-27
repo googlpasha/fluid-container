@@ -1,6 +1,10 @@
 const initialState = {
-    tank1: 0,
-    tank2: 0
+    tank1: {
+      value: 0
+    },
+    tank2: {
+      value: 0
+    }
 }
 
 const reduser = (state = initialState, action) =>{
@@ -14,10 +18,10 @@ const reduser = (state = initialState, action) =>{
     if(action.type==='FILL_UP'){
       switch (action.value) {
           case 1:
-              newState.tank1++ 
+              newState.tank1.value++ 
               break;
           case 2:
-              newState.tank2++ 
+              newState.tank2.value++ 
               break;
       
           default:
