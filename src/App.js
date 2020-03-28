@@ -9,14 +9,17 @@ class App extends React.Component {
     super()
     this.state = {
       tank1: {
+        id: 1,
         value: 0
       },
       tank2: {
+        id: 2,
         value: 0
       }
     }
     this.changeTank1Val = this.changeTank1Val.bind(this)
     this.changeTank2Val = this.changeTank2Val.bind(this)
+    this.checkAllTanks = this.checkAllTanks.bind(this)
   }
   // componentWillUpdate(){
   //   console.log("PROPS: ", this.props.tank1)
@@ -24,16 +27,31 @@ class App extends React.Component {
   //     tank1 : this.props.tank1
   //   })
   // }
-  changeTank1Val(){
-    let tankCopy = this.state.tank1
-    let tankCopy2 = this.state.tank2
-    tankCopy.value++
-    if(tankCopy.value>10){
-      tankCopy2.value++
+  changeTank1Val(tank){
+    console.log(tank)
+    if((this.state.tank1.value < 100)){
+      let tankCopy = tank
+      tankCopy.value++
+      // if(tankCopy.value>10){
+      //   tankCopy2.value++
+      // }
+      this.setState({
+        state : tankCopy
+      })
+      setTimeout(() => {
+        this.changeTank1Val(tank)
+      }, 100);
     }
-    this.setState({
-      state : tankCopy
-    })
+  }
+
+  async checkAllTanks(){
+    for (var key in this.state) {
+      console.log("ITIRATION NUM: ", this.state[key].id)
+      if(this.state[key].value <= 100){
+        await this.changeTank1Val(this.state[key])
+        console.log("FIRST DONE")
+      }
+    }
   }
   changeTank2Val(){
     let tankCopy = this.state.tank2
@@ -52,6 +70,7 @@ class App extends React.Component {
             <div className="col-lg-8">
               <h1>Fluid counter!</h1>
               {this.state.tank1.value}
+              <button onClick={this.checkAllTanks}>FILL</button>
               <Tank tank1={this.state.tank1} fillUp={this.changeTank1Val}/>
               <Tank tank1={this.state.tank2} start={this.prepared} fillUp={this.changeTank2Val} />
             </div>

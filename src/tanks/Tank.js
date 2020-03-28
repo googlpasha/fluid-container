@@ -2,14 +2,14 @@ import React from 'react';
 export default class 
  extends React.Component {
 
-    tankFiller(params) {
-        if(this.props.tank1.value < 100)
-        setTimeout(() => {
-          this.props.fillUp()
-        //   this.forceUpdate();
-          this.tankFiller()
-        }, 100);
-    }
+    // tankFiller(params) {
+    //     if(this.props.tank1.value < 100)
+        // setTimeout(() => {
+        //   this.props.fillUp()
+        // //   this.forceUpdate();
+        //   this.tankFiller()
+        // }, 100);
+    // }
     render(){
       var tank1Styles = {
         height: "100px",
@@ -24,7 +24,6 @@ export default class
           <div>
             {tank1Styles.background}
             <div style={tank1Styles}></div>
-            <button onClick={this.tankFiller.bind(this)}>FILL</button>
           </div>
         </div>
       )
